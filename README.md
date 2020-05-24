@@ -25,6 +25,5 @@ Para executar o projeto, siga as instruções abaixo:
 
 ## 4. Documentação de Testes
 
-    1. Confira a documentação para execução no [Postman](https://www.postman.com/) 
-       a partir da [Documentação da Api de Gerenciamento de Documentos] (https://explore.postman.com/templates/8664/gerenciador-de-documentos)
+- Confira a documentação para execução no [Postman](https://www.postman.com/) a partir da [Documentação da Api de Gerenciamento de Documentos] (https://explore.postman.com/templates/8664/gerenciador-de-documentos)
 
