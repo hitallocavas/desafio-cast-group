@@ -17,6 +17,7 @@ Para construção da Api, as seguintes tecnologias foram utilizadas
     3. JUnit
     4. Mockito
     5. Rest Assured
+    6. Jacoco
 
 ## 3. Configurações
 
@@ -33,7 +34,7 @@ Para executar o projeto, siga as instruções abaixo:
 
     1. Para executar testes sem relatórios de cobertura, execute ./mvnw test
     2. Para executar testes com relatórios de cobertura, execute ./mvnw test jacoco:report
-    3. O acesso aos relatórios gerados pelo jacoco estão disponíveis no arquivo 
+    3. Os relatórios de testes gerados pelo jacoco estarão disponíveis no arquivo 
        index.html no diretório target/site/jacoco/      
 
 ## 5. Documentação de Testes
