@@ -22,11 +22,12 @@ Para construção da Api, as seguintes tecnologias foram utilizadas
 
 Para executar o projeto, siga as instruções abaixo:
     
-    1. Verifique se o Java 11 está instalado na sua máquina, caso não, instale
+    1. Para executar este projeto é necessário ter o Java 11 instalado na sua máquina. 
+       Verifique se o mesmo está instalado, ou instale caso necessário.
     2. Faça clone deste projeto em algum diretório do seu computador
     3. Entre no novo diretório gerado a partir do clone
     4. Execute ./mvnw clean install
-    5. Execute java -jar document-manager-0.0.1-SNAPSHOT.jar
+    5. Na pasta target, execute java -jar document-manager-0.0.1-SNAPSHOT.jar
 
 ## 4. Execução de Testes
 
