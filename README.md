@@ -21,6 +21,10 @@ Para executar o projeto, siga as instruções abaixo:
 
     1. Para executar testes sem relatórios de cobertura, execute ./mvnw test
     2. Para executar testes com relatórios de cobertura, execute ./mvnw test jacoco:report
-        _Relatórios estarão disponíveis no diretório target\site\jacoco\index.html_
+        - Relatórios estarão disponíveis no diretório target\site\jacoco\index.html        
 
+## 4. Documentação de Testes
+
+    1. Confira a documentação para execução no [Postman](https://www.postman.com/) 
+       a partir da [Documentação da Api de Gerenciamento de Documentos] (https://explore.postman.com/templates/8664/gerenciador-de-documentos)
 
