@@ -33,7 +33,7 @@ Para executar o projeto, siga as instruções abaixo:
 
     1. Para executar testes sem relatórios de cobertura, execute ./mvnw test
     2. Para executar testes com relatórios de cobertura, execute ./mvnw test jacoco:report
-    3. Verifique o arquivo index.html no diretório target/site/jacoco/      
+    3. O acesso aos relatórios gerados pelo jacoco estão disponíveis no arquivo index.html no diretório target/site/jacoco/      
 
 ## 5. Documentação de Testes
 
