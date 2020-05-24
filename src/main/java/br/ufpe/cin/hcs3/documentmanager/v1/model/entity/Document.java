@@ -14,6 +14,7 @@ class Document {
 
     @Id
     private Long id;
+
     private String leftDoc;
     private String rightDoc;
 
