@@ -1,6 +1,6 @@
 package br.ufpe.cin.hcs3.documentmanager.v1.rest;
 
-import br.ufpe.cin.hcs3.documentmanager.v1.model.representation.message.ValidationMessages;
+import br.ufpe.cin.hcs3.documentmanager.v1.model.enums.DocumentType;
 import br.ufpe.cin.hcs3.documentmanager.v1.model.representation.request.DocumentRequest;
 import br.ufpe.cin.hcs3.documentmanager.v1.service.DocumentService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping("/diff")
@@ -22,30 +21,21 @@ class DocumentController {
 
     @Validated
     @PostMapping("{id}/left")
-    public ResponseEntity<Object> saveLeftDocument(@PathVariable("id")
-                                                   @NotBlank(message = ValidationMessages.ID_IS_REQUIRED)
-                                                           Long id,
+    public ResponseEntity<Object> saveLeftDocument(@PathVariable("id") Long id,
                                                    @Valid @RequestBody DocumentRequest documentRequest) {
-        try {
-            documentService.saveDocument(documentService.getLeftEntity(id, documentRequest));
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        documentService.saveDocument(documentService.getEntity(id, documentRequest, DocumentType.LEFT));
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+
     }
 
     @Validated
     @PostMapping("{id}/right")
-    public ResponseEntity<Object> saveRightDocument(@PathVariable("id")
-                                                    @NotBlank(message = ValidationMessages.ID_IS_REQUIRED)
-                                                            Long id,
+    public ResponseEntity<Object> saveRightDocument(@PathVariable("id") Long id,
                                                     @Valid @RequestBody DocumentRequest documentRequest) {
-        try {
-            documentService.saveDocument(documentService.getRightEntity(id, documentRequest));
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+
+        documentService.saveDocument(documentService.getEntity(id, documentRequest, DocumentType.RIGHT));
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+
     }
 
     @GetMapping("/{id}")

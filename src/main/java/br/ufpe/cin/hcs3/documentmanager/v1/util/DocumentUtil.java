@@ -2,6 +2,7 @@ package br.ufpe.cin.hcs3.documentmanager.v1.util;
 
 import br.ufpe.cin.hcs3.documentmanager.v1.model.entity.Document;
 import br.ufpe.cin.hcs3.documentmanager.v1.model.representation.message.ResponseMessage;
+import lombok.experimental.UtilityClass;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -10,17 +11,13 @@ import static java.util.Base64.*;
 
 import java.util.List;
 
+@UtilityClass
 public class DocumentUtil {
-
-    private DocumentUtil() {
-        throw new IllegalStateException("Utility class");
-    }
-
     public static String getNullPositionsMessage(Document document) {
         List<String> messages = new ArrayList<>();
         if (StringUtils.isEmpty(document.getLeftDoc()))
             messages.add(ResponseMessage.LEFT_DOCUMENT_IS_NULL);
-        if (StringUtils.isEmpty(document.getRightDoc().isEmpty()))
+        if (StringUtils.isEmpty(document.getRightDoc()))
             messages.add(ResponseMessage.RIGHT_DOCUMENT_IS_NULL);
         return String.join(",", messages);
     }
@@ -38,18 +35,13 @@ public class DocumentUtil {
             if (Boolean.TRUE.equals(BytesUtil.equals(left, right))) {
                 return String.format(ResponseMessage.DOCUMENTS_WITH_SAME_SIZE, document.getId());
             }
-            return compareBytesEquality(document, right, left);
+            return compareBytesEquality(right, left);
         } else {
             return String.format(ResponseMessage.DOCUMENTS_WITH_DIFFERENT_SIZE, document.getId());
         }
     }
 
-    private static String compareBytesEquality(Document document, byte[] right, byte[] left) {
-        var differentOffsetOpt = BytesUtil.differentOffset(left, right);
-        if (differentOffsetOpt.isPresent()) {
-            Integer offset = differentOffsetOpt.getAsInt();
-            return offset.toString();
-        }
-        return String.format(ResponseMessage.DOCUMENTS_WITH_SAME_SIZE, document.getId());
+    private static String compareBytesEquality(byte[] right, byte[] left) {
+       return BytesUtil.differentOffset(left, right).toString();
     }
 }

@@ -2,16 +2,16 @@ package br.ufpe.cin.hcs3.documentmanager.v1.service;
 
 import br.ufpe.cin.hcs3.documentmanager.v1.model.builders.DocumentBuilder;
 import br.ufpe.cin.hcs3.documentmanager.v1.model.entity.Document;
+import br.ufpe.cin.hcs3.documentmanager.v1.model.enums.DocumentType;
 import br.ufpe.cin.hcs3.documentmanager.v1.model.representation.message.ResponseMessage;
 import br.ufpe.cin.hcs3.documentmanager.v1.model.representation.request.DocumentRequest;
 import br.ufpe.cin.hcs3.documentmanager.v1.repository.DocumentRepository;
+import br.ufpe.cin.hcs3.documentmanager.v1.util.DocumentUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import static br.ufpe.cin.hcs3.documentmanager.v1.util.DocumentUtil.*;
 
 import java.util.Optional;
 
@@ -22,7 +22,7 @@ class DocumentService {
     private final DocumentRepository documentRepository;
 
     public Document saveDocument(Document document) {
-       return this.documentRepository.save(document);
+        return this.documentRepository.save(document);
     }
 
     private Optional<Document> findById(Long id) {
@@ -33,33 +33,23 @@ class DocumentService {
         var document = this.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, ResponseMessage.DOCUMENT_NOT_FOUND));
 
-        if (hasNullPosition(document)) {
+        if (Boolean.TRUE.equals(DocumentUtil.hasNullPosition(document))) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
-                    getNullPositionsMessage(document));
+                    DocumentUtil.getNullPositionsMessage(document));
         }
 
-        return checkDifferences(document);
+        return DocumentUtil.checkDifferences(document);
     }
 
-    public Document getLeftEntity(Long id, DocumentRequest request) {
+    public Document getEntity(Long id, DocumentRequest request, DocumentType documentType) {
         var documentOpt = this.findById(id);
-        if (documentOpt.isPresent()) {
-            var document = documentOpt.get();
-            document.setLeftDoc(request.getData());
-            return document;
-        } else {
-            return DocumentBuilder.mountLeftDocument(id, request.getData());
+
+        if (documentType.equals(DocumentType.LEFT)) {
+            return DocumentBuilder.mountLeftDocument(id, request.getData(), documentOpt);
         }
+
+        return DocumentBuilder.mountRightDocument(id, request.getData(), documentOpt);
+
     }
 
-    public Document getRightEntity(Long id, DocumentRequest request) {
-        var documentOpt = this.findById(id);
-        if (documentOpt.isPresent()) {
-            var document = documentOpt.get();
-            document.setRightDoc(request.getData());
-            return document;
-        } else {
-            return DocumentBuilder.mountRightDocument(id, request.getData());
-        }
-    }
 }

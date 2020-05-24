@@ -1,12 +1,15 @@
 package br.ufpe.cin.hcs3.documentmanager.v1.model.representation.request;
 
-import br.ufpe.cin.hcs3.documentmanager.v1.model.representation.message.ValidationMessages;
-import lombok.Getter;
-import lombok.Setter;
+import br.ufpe.cin.hcs3.documentmanager.v1.model.representation.message.ResponseMessage;
+import lombok.*;
+
 import javax.validation.constraints.NotBlank;
 
-public @Getter @Setter
+public
+@Getter @Setter
+@Builder @AllArgsConstructor
+@NoArgsConstructor @Generated
 class DocumentRequest {
-    @NotBlank(message = ValidationMessages.DATA_IS_REQUIRED)
+    @NotBlank(message = ResponseMessage.DATA_IS_REQUIRED)
     private String data;
 }
