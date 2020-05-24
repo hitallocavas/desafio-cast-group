@@ -12,8 +12,8 @@ Aplicação para gerenciamento e cálculo de diferenças entre conteúdos de doc
 
 Para testar o projeto, siga as instruções abaixo:
 
-` - Faça clone deste projeto em algum diretório do seu computador
-  - Entre no novo diretório gerado a partir do clone
-  - Execute ./mvnw clean install
-  - Execute java -jar document-manager-0.0.1-SNAPSHOT.jar
-´
+    - Faça clone deste projeto em algum diretório do seu computador
+    - Entre no novo diretório gerado a partir do clone
+    - Execute ./mvnw clean install
+    - Execute java -jar document-manager-0.0.1-SNAPSHOT.jar
+
