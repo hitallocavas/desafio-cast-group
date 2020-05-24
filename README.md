@@ -2,9 +2,8 @@
 
 Aplicação para gerenciamento e cálculo de diferenças entre conteúdos de documentos
 
-**Tabela de Conteúdos**
-[TOCM]
 
-[TOC]
+## Funcionalidades
 
-###Features
+- Inserção de Documentos
+- Cálculo de diferença entre conteúdos de arquivos
