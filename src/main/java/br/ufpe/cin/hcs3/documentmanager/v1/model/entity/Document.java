@@ -11,7 +11,11 @@ class Document {
 
     @Id
     private Long id;
+
+    @Column(columnDefinition = "TEXT")
     private String leftDoc;
+
+    @Column(columnDefinition = "TEXT")
     private String rightDoc;
 
 }
